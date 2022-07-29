@@ -7,6 +7,12 @@ const getArticles = asyncHandler(async (req, res) => {
   res.status(200).json(articles)
 })
 
+const getArticle = asyncHandler(async (req, res) => {
+  const article = await Article.findById(req.params.id)
+
+  res.status(200).json(article)
+})
+
 const setArticle = asyncHandler(async (req, res) => {
   if(!req.body.title || !req.body.content || !req.body.author || !req.body.category) {
     res.status(400)
@@ -53,6 +59,7 @@ const deleteArticle = asyncHandler(async (req, res) => {
 
 module.exports = {
   getArticles,
+  getArticle,
   setArticle,
   updateArticle,
   deleteArticle
